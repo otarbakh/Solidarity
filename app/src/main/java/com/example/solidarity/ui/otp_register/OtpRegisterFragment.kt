@@ -1,17 +1,12 @@
 package com.example.solidarity.ui.otp_register
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
+
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import com.example.solidarity.R
 import com.example.solidarity.common.BaseFragment
 import com.example.solidarity.databinding.FragmentOtpRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -40,11 +35,10 @@ class OtpRegisterFragment :
     }
 
     override fun listeners() {
-        checkVerificationCode()
         sendOtp()
+        checkVerificationCode()
         changeColours()
         checkVisibility()
-        checknext()
     }
 
 
@@ -109,16 +103,10 @@ class OtpRegisterFragment :
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 
-    fun checknext() {
-        binding.btnNext.setOnClickListener {
-            Toast.makeText(requireContext(), "gogogogo", Toast.LENGTH_SHORT).show()
-        }
-    }
-
 
     private fun sendOtp() {
         val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber("+995577404545") // Phone number to verify
+            .setPhoneNumber("+995551585021") // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(mCallbacks) // OnVerificationStateChangedCallbacks
