@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "710386577346",
+    "project_id": "solidarity-397c6",
+    "storage_bucket": "solidarity-397c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710386577346:android:27a64a6baad61dbeee305b",
+        "android_client_info": {
+          "package_name": "com.example.solidarity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710386577346-6l1krf8790ks6ik568e5siv6pe5uc974.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.solidarity",
+            "certificate_hash": "9dae53cb26246e6391630a9c1c380610b56aefe7"
+          }
+        },
+        {
+          "client_id": "710386577346-0ldoihhgaog9qlksfmkpgrjc9rkrad14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLv9tnekHIQk8EAnLWSV74wH_E2NFP7YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710386577346-0ldoihhgaog9qlksfmkpgrjc9rkrad14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710386577346:android:5578e4bf7be7c945ee305b",
+        "android_client_info": {
+          "package_name": "com.example.solidarity_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710386577346-0ldoihhgaog9qlksfmkpgrjc9rkrad14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLv9tnekHIQk8EAnLWSV74wH_E2NFP7YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710386577346-0ldoihhgaog9qlksfmkpgrjc9rkrad14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
