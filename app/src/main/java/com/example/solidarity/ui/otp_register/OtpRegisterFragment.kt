@@ -199,7 +199,7 @@ class OtpRegisterFragment :
                         var message = task.exception?.message.toString()
                         Log.d("baxtadze", message)
                         if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                            message = "wronggg monacmebi 187"
+                            message = "wrong monacmebi 187"
                         }
                     }
                 })
