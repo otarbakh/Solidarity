@@ -9,5 +9,19 @@
         android:id="@+id/otpRegisterFragment"
         android:name="com.example.solidarity.ui.otp_register.OtpRegisterFragment"
         android:label="fragment_otp_register"
-        tools:layout="@layout/fragment_otp_register" />
+        tools:layout="@layout/fragment_otp_register" >
+        <action
+            android:id="@+id/action_otpRegisterFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.example.solidarity.ui.verification.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification" >
+        <action
+            android:id="@+id/action_verificationFragment_to_otpRegisterFragment"
+            app:destination="@id/otpRegisterFragment" />
+
+    </fragment>
 </navigation>

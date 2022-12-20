@@ -2,6 +2,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -38,6 +39,8 @@ android {
 }
 
 dependencies {
+
+
 
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
 

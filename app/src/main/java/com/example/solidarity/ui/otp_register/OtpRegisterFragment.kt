@@ -7,8 +7,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
 import com.example.solidarity.common.BaseFragment
 import com.example.solidarity.databinding.FragmentOtpRegisterBinding
+import com.example.solidarity.ui.verification.VerificationFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -22,10 +24,11 @@ class OtpRegisterFragment :
     AdapterView.OnItemSelectedListener {
 
 
-    var mVerificationId: String? = null
-    var mResendToken: PhoneAuthProvider.ForceResendingToken? = null
+    val verificationFragment: VerificationFragment by lazy { VerificationFragment() }
+
 
     private lateinit var auth: FirebaseAuth
+
     private var selectedCountryCode = ""
 
     override fun viewCreated() {
@@ -36,7 +39,6 @@ class OtpRegisterFragment :
 
     override fun listeners() {
         sendOtp()
-        checkVerificationCode()
         changeColours()
         checkVisibility()
     }
@@ -103,13 +105,12 @@ class OtpRegisterFragment :
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 
-
     private fun sendOtp() {
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber("+995551585021") // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity()) // Activity (for callback binding)
-            .setCallbacks(mCallbacks) // OnVerificationStateChangedCallbacks
+            .setCallbacks(verificationFragment.mCallbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
         Log.d("baxtadze", "gaigzavna kodi")
@@ -117,93 +118,8 @@ class OtpRegisterFragment :
     }
 
 
-    private val mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks =
-        object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                //Getting the code sent by SMS
-                val code = credential.smsCode
-                //sometime the code is not detected automatically
-                //in this case the code will be null
-                //so user has to manually enter the code
-                code?.let { verifyVerificationCode(it) }
-                Log.d("baxtadze", code.toString())
-            }
-
-            override fun onVerificationFailed(e: FirebaseException) {
-                // This callback is invoked in an invalid request for verification is made,
-                // for instance if the the phone number format is not valid.
-                if (e is FirebaseAuthInvalidCredentialsException) {
-                    Log.d("baxtadze", e.message.toString())
-
-                    // Invalid request
-                    // ...
-                } else if (e is FirebaseTooManyRequestsException) {
-                    Log.d("baxtadze", e.message.toString())
-
-                    // The SMS quota for the project has been exceeded
-                    // ...
-                }
-                // Show a message and update the UI
-                // ...
-            }
-
-            override fun onCodeSent(
-                verificationId: String,
-                token: PhoneAuthProvider.ForceResendingToken
-            ) {
-                super.onCodeSent(verificationId, token)
-                // Save verification ID and resending token so we can use them later
-                mVerificationId = verificationId
-                mResendToken = token
-                Log.d("baxtadze", "${mVerificationId},${mResendToken}")
-
-            }
-        }
-
-    private fun checkVerificationCode() {
-        binding.btnNext.setOnClickListener {
-            if (binding.etPhoneNumber.text.toString().isEmpty()) {
-                Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
-            } else {
-                verifyVerificationCode(binding.etPhoneNumber.text.toString())
-            }
-        }
-    }
 
 
-    private fun verifyVerificationCode(code: String) {
-        try {
-            //creating the credential
-            val credential = PhoneAuthProvider.getCredential(mVerificationId!!, code)
-            //signing the user
-            signInWithPhoneAuthCredential(credential)
-            Log.d("baxtadze", credential.smsCode.toString())
-
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
-            Log.d("baxtadze", e.localizedMessage.toString())
-
-        }
-    }
-
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(requireActivity(),
-                OnCompleteListener<AuthResult?> { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        val user: FirebaseUser? = task.result.user
-                        Log.d("baxtadze", user?.phoneNumber.toString())
-
-                    } else {
-                        var message = task.exception?.message.toString()
-                        Log.d("baxtadze", message)
-                        if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                            message = "wrong monacmebi 187"
-                        }
-                    }
-                })
-    }
 }
 
 
