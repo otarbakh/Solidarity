@@ -1,4 +1,4 @@
-package com.example.solidarity.ui.verification
+package com.example.solidarity.ui.verification_fragment
 
 import androidx.lifecycle.ViewModel
 

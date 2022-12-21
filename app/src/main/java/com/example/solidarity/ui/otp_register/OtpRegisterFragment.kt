@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
 import com.example.solidarity.common.BaseFragment
 import com.example.solidarity.databinding.FragmentOtpRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -178,7 +179,7 @@ class OtpRegisterFragment :
 
     private fun sendOtp() {
         val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber("+995551585021") // Phone number to verify
+            .setPhoneNumber("+995577404545") // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(mCallbacks) // OnVerificationStateChangedCallbacks
@@ -194,6 +195,8 @@ class OtpRegisterFragment :
                 Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
             } else {
                 verifyVerificationCode(binding.etPhoneNumber.text.toString())
+
+                findNavController().navigate(OtpRegisterFragmentDirections.actionOtpRegisterFragmentToMainFragment())
             }
         }
     }
