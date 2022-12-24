@@ -39,12 +39,11 @@ class CategoriesAdapter  :
                 binding.etCategorieName.text = model?.categoryName
                 binding.etCategorieName.text = model?.categoryDescription
             }
+            binding.mainLayout.setOnClickListener {
+                itemClickListener.invoke(model!!, adapterPosition)
 
+            }
 
-//            binding.tvItemCode.setOnClickListener {
-//                val action = DashboardFragmentDirections.actionDashboardFragmentToItemsFragment()
-//                binding.tvItemCode.findNavController().navigate(action)
-//            }
         }
     }
 

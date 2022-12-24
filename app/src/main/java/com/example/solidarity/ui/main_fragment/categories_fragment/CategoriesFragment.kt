@@ -1,6 +1,7 @@
 package com.example.solidarity.ui.main_fragment.categories_fragment
 
 
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.solidarity.common.BaseFragment
 import com.example.solidarity.data.model.Categories
@@ -16,13 +17,14 @@ class CategoriesFragment :
     override fun viewCreated() {
         populateList()
         setupRecyclerView()
+        categoriesAdapter.submitList(categoriesList)
 
     }
 
     override fun listeners() {
-//        binding.mapTest.setOnClickListener {
-//            findNavController().navigate(CategoriesFragmentDirections.actionCategoriesFragmentToMapsFragment2())
-//        }
+       categoriesAdapter.setOnItemClickListener { categories, i ->
+           findNavController().navigate(CategoriesFragmentDirections.actionCategoriesFragmentToMapsFragment2())
+       }
     }
 
 
@@ -39,6 +41,14 @@ class CategoriesFragment :
     }
 
     private fun populateList(){
+        categoriesList.add(
+            Categories("Food, Medicines, Clothing, ChildCare Supplies",
+                "Help people  in life-threading conditions and assist with essential supplies such as first aid,  tissues,  diapers, sanitizers, etc.")
+        )
+        categoriesList.add(
+            Categories("Food, Medicines, Clothing, ChildCare Supplies",
+                "Help people  in life-threading conditions and assist with essential supplies such as first aid,  tissues,  diapers, sanitizers, etc.")
+        )
         categoriesList.add(
             Categories("Food, Medicines, Clothing, ChildCare Supplies",
                 "Help people  in life-threading conditions and assist with essential supplies such as first aid,  tissues,  diapers, sanitizers, etc.")
