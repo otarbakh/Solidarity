@@ -1,25 +1,48 @@
 package com.example.solidarity.ui.main_fragment.categories_fragment
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.solidarity.R
-import com.example.solidarity.common.BaseFragment
-import com.example.solidarity.databinding.FragmentCategoriesBinding
 
-class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>(FragmentCategoriesBinding::inflate) {
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.solidarity.common.BaseFragment
+import com.example.solidarity.data.model.Categories
+import com.example.solidarity.data.model.categoriesList
+import com.example.solidarity.databinding.FragmentCategoriesBinding
+import com.example.solidarity.ui.adapters.CategoriesAdapter
+
+class CategoriesFragment :
+    BaseFragment<FragmentCategoriesBinding>(FragmentCategoriesBinding::inflate) {
+
+    private val categoriesAdapter: CategoriesAdapter by lazy { CategoriesAdapter() }
+
     override fun viewCreated() {
+        populateList()
+        setupRecyclerView()
 
     }
 
     override fun listeners() {
-        binding.mapTest.setOnClickListener {
-            findNavController().navigate(CategoriesFragmentDirections.actionCategoriesFragmentToMapsFragment2())
+//        binding.mapTest.setOnClickListener {
+//            findNavController().navigate(CategoriesFragmentDirections.actionCategoriesFragmentToMapsFragment2())
+//        }
+    }
+
+
+    private fun setupRecyclerView() {
+        binding.rvCategories.apply {
+            adapter = categoriesAdapter
+            layoutManager =
+                LinearLayoutManager(
+                    requireContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
         }
+    }
+
+    private fun populateList(){
+        categoriesList.add(
+            Categories("Food, Medicines, Clothing, ChildCare Supplies",
+                "Help people  in life-threading conditions and assist with essential supplies such as first aid,  tissues,  diapers, sanitizers, etc.")
+        )
     }
 
 
