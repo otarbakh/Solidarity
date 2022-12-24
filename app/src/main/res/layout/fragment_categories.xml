@@ -6,6 +6,7 @@
     tools:context=".ui.main_fragment.categories_fragment.CategoriesFragment">
 
     <TextView
+        android:id="@+id/mapTest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Categories" />

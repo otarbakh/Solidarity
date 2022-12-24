@@ -25,6 +25,9 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
+            android:id="@+id/action_categoriesFragment_to_mapsFragment2"
+            app:destination="@id/mapsFragment" />
+        <action
             android:id="@+id/action_mainFragment_to_categoriesFragment"
             app:destination="@id/categoriesFragment" />
         <action
@@ -36,12 +39,19 @@
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.solidarity.ui.main_fragment.categories_fragment.CategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_mapsFragment2"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/requestsFragment"
         android:name="com.example.solidarity.ui.main_fragment.request_fragment.RequestsFragment"
@@ -57,4 +67,9 @@
         android:name="com.example.solidarity.ui.main_fragment.profile_fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.solidarity.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

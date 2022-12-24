@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.solidarity.R
 import com.example.solidarity.common.BaseFragment
 import com.example.solidarity.databinding.FragmentCategoriesBinding
@@ -16,7 +17,9 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>(FragmentCateg
     }
 
     override fun listeners() {
-
+        binding.mapTest.setOnClickListener {
+            findNavController().navigate(CategoriesFragmentDirections.actionCategoriesFragmentToMapsFragment2())
+        }
     }
 
 
