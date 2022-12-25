@@ -1,6 +1,7 @@
 package com.example.solidarity.ui.main_fragment
 
 
+
 import androidx.viewpager2.widget.ViewPager2
 import com.example.solidarity.R
 import com.example.solidarity.common.BaseFragment
@@ -13,6 +14,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
+
+
 
     override fun viewCreated() {
         setupTabLayout()
@@ -47,4 +50,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         tabLayout.getTabAt(3)?.setIcon(R.drawable.profile)
         tabLayout.getTabAt(4)?.setIcon(R.drawable.notification)
     }
+
+
 }
